@@ -1,5 +1,8 @@
 import datetime
 import webbrowser
+import ref
+import Sharing
+import User
 
 class food:
     def __init__ (self,name,type,year,month,day,link):
@@ -29,8 +32,21 @@ class food:
         
 if __name__ == '__main__':
     f1 = food("food1","type1",2022,11,21,"http://www.google.com")
+    
     print(f1)
     print(f1.final_date)
     now = datetime.datetime.now()
     diff = now - f1.final_date
     print(diff.days)
+    r1 = ref.ref([])
+    r2 = ref.ref([])
+    u1 = User.User("id1","loc1",r1)
+    u1.ref.append_food(f1)
+    u2 = User.User("id2","loc1",r2)
+    s1 = Sharing.Sharing(u1,f1,u2)
+    s1.show_food()
+    s1.deal()
+    print(u1.ref.ref_food)
+    print(u1.ref.ref_food)
+    print(u2.ref.ref_food[0])
+    
