@@ -4,11 +4,11 @@
     </head>
     <body>
         <h4>냉장고에 추가!</h4>
-        <form action="home.html" method="get">
-            <label>음식 이름</label> <input type="text" id="food_name"/></label> <br>
-            <label>음식 타입<input type="text" id="food_type"/></label><br>
-            <label>유통 기한<input type="date" id="food_exp"/></label><br>
-            <label>개봉 여부<input type="checkbox" id="food_opened"/></label><br>
+        <form action="http://127.0.0.1:5000/reftohome" method="post">
+            <label>음식 이름</label> <input type="text" id="food_name" name="food_name"/></label> <br>
+            <label>음식 타입<input type="text" id="food_type" name="food_type"/></label><br>
+            <label>유통 기한<input type="date" id="food_exp" name="food_exp"/></label><br>
+            <label>개봉 여부<input type="checkbox" id="food_opened" name="food_opened"/></label><br>
             
             <input type="submit" value="Access"/>
         </form>
