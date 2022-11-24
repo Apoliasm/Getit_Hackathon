@@ -3,8 +3,9 @@ class ref:
     self.ref_food = ref_food
 
   def view_food(self):
-    print(self.ref_food)
-    return self.ref_food
+    for food in self.ref_food:
+      print(food)
+    
 
   def append_food(self,Food):
     self.ref_food.append(Food)
