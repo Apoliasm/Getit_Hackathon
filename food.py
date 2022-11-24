@@ -5,11 +5,12 @@ import Sharing
 import User
 
 class food:
-    def __init__ (self,name,type,year,month,day,link):
+    def __init__ (self,name,type,opened,year,month,day,link):
         self.food_name = name
         self.food_type = type
+        self.opened = opened #음식 개방 여부(bool type)
         self.final_date = datetime.datetime(year ,month ,day)
-
+        
         self.coupang = link
     def __str__(self) -> str:
         return 'food_name = {}, food_type = {}, final_date = {}, coupanglink = {}'.format(self.food_name,self.food_type,self.final_date,self.coupang)
