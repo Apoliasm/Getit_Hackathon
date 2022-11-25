@@ -9,6 +9,33 @@ application.secret_key = os.urandom(24)
 
 @application.route("/")
 def First_view():
+     ##### 초기 데이터 #####
+    r1 = ref.ref([])
+    r2 = ref.ref([])
+    r3 = ref.ref([])
+    user1 = User.User("111","A",r1)
+    user2 = User.User("222","A",r2)
+    user3 = User.User("333","A",r3)
+    f1=food.food("사과","과일","off",2022,12,23,"www.apple.com")
+    f2=food.food("상추","채소","off",2022,11,28,"www.naver.com")
+    f3=food.food("우유","유제품","on",2022,11,26,"www.google.com")
+    user1.ref.append_food(f1)
+    user1.ref.append_food(f2)
+    user2.ref.append_food(f3)
+    share1 = Sharing.Sharing(user1,user1.ref.ref_food[0],None)
+    share2 = Sharing.Sharing(user2,user2.ref.ref_food[0],None)
+    global sharelist
+    sharelist = []
+    global sharing_class_list 
+    sharing_class_list = []
+    sharing_class_list.append(share1)
+    sharing_class_list.append(share2)
+    sharelist.append({"ID":share1.User.ID, "NAME":share1.shared_food.food_name,"EXP":share1.shared_food.final_date,"OPENED":share1.shared_food.opened})
+    sharelist.append({"ID":share2.User.ID,"NAME":share2.shared_food.food_name,"EXP":share2.shared_food.final_date,"OPENED":share2.shared_food.opened})
+    
+    global my_ref
+    my_ref = []
+    ###초기 데이터 ###
     return render_template("login.html")
 
 
@@ -81,32 +108,6 @@ def ref_input():
     return redirect(url_for("login"))
 
 if __name__ == '__main__':
-    ##### 초기 데이터 #####
-    r1 = ref.ref([])
-    r2 = ref.ref([])
-    r3 = ref.ref([])
-    user1 = User.User("111","A",r1)
-    user2 = User.User("222","A",r2)
-    user3 = User.User("333","A",r3)
-    f1=food.food("사과","과일","off",2022,12,23,"www.apple.com")
-    f2=food.food("상추","채소","off",2022,11,28,"www.naver.com")
-    f3=food.food("우유","유제품","on",2022,11,26,"www.google.com")
-    user1.ref.append_food(f1)
-    user1.ref.append_food(f2)
-    user2.ref.append_food(f3)
-    share1 = Sharing.Sharing(user1,user1.ref.ref_food[0],None)
-    share2 = Sharing.Sharing(user2,user2.ref.ref_food[0],None)
-    global sharelist
-    sharelist = []
-    global sharing_class_list 
-    sharing_class_list = []
-    sharing_class_list.append(share1)
-    sharing_class_list.append(share2)
-    sharelist.append({"ID":share1.User.ID, "NAME":share1.shared_food.food_name,"EXP":share1.shared_food.final_date,"OPENED":share1.shared_food.opened})
-    sharelist.append({"ID":share2.User.ID,"NAME":share2.shared_food.food_name,"EXP":share2.shared_food.final_date,"OPENED":share2.shared_food.opened})
-    
-    global my_ref
-    my_ref = []
-    ###초기 데이터 ###
+   
     
     application.run("0.0.0.0",5000,debug=True)
